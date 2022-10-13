@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+@using DoctorsOffice.Models;
+@model DoctorsOffice.Models.Patient
+
+<h2>Patient Details:</h2>
+<hr />
+<h3>Name: @Html.DisplayFor(model => model.Name)</h3>
+
+<h3>Bd: @Html.DisplayFor(model => model.Birthday)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This patient hasn't been assigned to any doctor yet!</p>
+}
+else
+{
+  <h4>Doctors assigned to this patient:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Doctor.Name</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to patients' list", "Index")</p>
+<p>@Html.ActionLink("Edit patient's info", "Edit", new { id = Model.PatientId })</p>
+<p>@Html.ActionLink("Delete Item", "Delete", new { id = Model.PatientId })</p>

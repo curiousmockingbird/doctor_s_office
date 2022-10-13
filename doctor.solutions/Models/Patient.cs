@@ -13,6 +13,8 @@ namespace DoctorsOffice.Models
 
         public int PatientId { get; set; }
         public string Name { get; set; }
+        
+        [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
         public virtual ICollection<DoctorPatient> JoinEntities { get;}
     }
