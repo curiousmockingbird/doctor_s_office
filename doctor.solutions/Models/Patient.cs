@@ -14,6 +14,6 @@ namespace DoctorsOffice.Models
         public int PatientId { get; set; }
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
-        public virtual ICollection<CategoryItem> JoinEntities { get;}
+        public virtual ICollection<DoctorPatient> JoinEntities { get;}
     }
 }
