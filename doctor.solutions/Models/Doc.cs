@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using System;
 
 namespace DoctorsOffice.Models
 {
-  public class Doctor
+  public class Doc
     {
-        public Doctor()
+        public Doc()
         {
-            this.JoinEntities = new HashSet<DoctorPatient>();
+          this.JoinEntities = new HashSet<DoctorPatient>();
         }
 
-        public int DoctorId { get; set; }
+        public int DocId { get; set; }
         public string Name { get; set; }
         public string Specialty { get; set; }
         public virtual ICollection<DoctorPatient> JoinEntities { get; set; }

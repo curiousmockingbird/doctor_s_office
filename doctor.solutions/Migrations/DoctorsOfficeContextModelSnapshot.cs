@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Doctor.Migrations
+namespace DoctorsOffice.Migrations
 {
     [DbContext(typeof(DoctorsOfficeContext))]
     partial class DoctorsOfficeContextModelSnapshot : ModelSnapshot
@@ -17,9 +17,9 @@ namespace Doctor.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("DoctorsOffice.Models.Doctor", b =>
+            modelBuilder.Entity("DoctorsOffice.Models.Doc", b =>
                 {
-                    b.Property<int>("DoctorId")
+                    b.Property<int>("DocId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -29,7 +29,7 @@ namespace Doctor.Migrations
                     b.Property<string>("Specialty")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasKey("DoctorId");
+                    b.HasKey("DocId");
 
                     b.ToTable("Doctors");
                 });
@@ -40,7 +40,7 @@ namespace Doctor.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DoctorId")
+                    b.Property<int>("DocId")
                         .HasColumnType("int");
 
                     b.Property<int>("PatientId")
@@ -48,7 +48,7 @@ namespace Doctor.Migrations
 
                     b.HasKey("DoctorPatientId");
 
-                    b.HasIndex("DoctorId");
+                    b.HasIndex("DocId");
 
                     b.HasIndex("PatientId");
 
@@ -74,9 +74,9 @@ namespace Doctor.Migrations
 
             modelBuilder.Entity("DoctorsOffice.Models.DoctorPatient", b =>
                 {
-                    b.HasOne("DoctorsOffice.Models.Doctor", "Doctor")
+                    b.HasOne("DoctorsOffice.Models.Doc", "Doctor")
                         .WithMany("JoinEntities")
-                        .HasForeignKey("DoctorId")
+                        .HasForeignKey("DocId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -91,7 +91,7 @@ namespace Doctor.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("DoctorsOffice.Models.Doctor", b =>
+            modelBuilder.Entity("DoctorsOffice.Models.Doc", b =>
                 {
                     b.Navigation("JoinEntities");
                 });

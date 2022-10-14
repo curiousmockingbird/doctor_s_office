@@ -23,19 +23,19 @@ namespace DoctorsOffice.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.DoctorId = new SelectList(_db.Doctors, "DoctorId", "Name");
+      ViewBag.DocId = new SelectList(_db.Doctors, "DocId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Patient patient, int DoctorId)
+    public ActionResult Create(Patient patient, int DocId)
     {
       _db.Patients.Add(patient);
       _db.SaveChanges();
 
-      if (DoctorId != 0)
+      if (DocId != 0)
       {
-        _db.DoctorPatient.Add(new DoctorPatient() { DoctorId = DoctorId, PatientId = patient.PatientId });
+        _db.DoctorPatient.Add(new DoctorPatient() { DocId = DocId, PatientId = patient.PatientId });
         _db.SaveChanges();
       }
       return RedirectToAction("Index");
@@ -68,16 +68,16 @@ namespace DoctorsOffice.Controllers
     public ActionResult Edit(int id)
     {
       var thisPatient = _db.Patients.FirstOrDefault(patient => patient.PatientId == id);
-      ViewBag.DoctorId = new SelectList(_db.Doctors, "DoctorId", "Name");
+      ViewBag.DocId = new SelectList(_db.Doctors, "DocId", "Name");
       return View(thisPatient);
     }
 
     [HttpPost]
-    public ActionResult Edit(Patient patient, int DoctorId)
+    public ActionResult Edit(Patient patient, int DocId)
     {
-      if (DoctorId != 0)
+      if (DocId != 0)
       {
-        _db.DoctorPatient.Add(new DoctorPatient() { DoctorId = DoctorId, PatientId = patient.PatientId });
+        _db.DoctorPatient.Add(new DoctorPatient() { DocId = DocId, PatientId = patient.PatientId });
       }
       _db.Entry(patient).State = EntityState.Modified;
       _db.SaveChanges();

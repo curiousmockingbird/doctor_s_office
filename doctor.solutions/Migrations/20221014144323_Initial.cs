@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Doctor.Migrations
+namespace DoctorsOffice.Migrations
 {
     public partial class Initial : Migration
     {
@@ -12,14 +12,14 @@ namespace Doctor.Migrations
                 name: "Doctors",
                 columns: table => new
                 {
-                    DoctorId = table.Column<int>(type: "int", nullable: false)
+                    DocId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
                     Specialty = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Doctors", x => x.DoctorId);
+                    table.PrimaryKey("PK_Doctors", x => x.DocId);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,16 +43,16 @@ namespace Doctor.Migrations
                     DoctorPatientId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PatientId = table.Column<int>(type: "int", nullable: false),
-                    DoctorId = table.Column<int>(type: "int", nullable: false)
+                    DocId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DoctorPatient", x => x.DoctorPatientId);
                     table.ForeignKey(
-                        name: "FK_DoctorPatient_Doctors_DoctorId",
-                        column: x => x.DoctorId,
+                        name: "FK_DoctorPatient_Doctors_DocId",
+                        column: x => x.DocId,
                         principalTable: "Doctors",
-                        principalColumn: "DoctorId",
+                        principalColumn: "DocId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DoctorPatient_Patients_PatientId",
@@ -63,9 +63,9 @@ namespace Doctor.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DoctorPatient_DoctorId",
+                name: "IX_DoctorPatient_DocId",
                 table: "DoctorPatient",
-                column: "DoctorId");
+                column: "DocId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DoctorPatient_PatientId",

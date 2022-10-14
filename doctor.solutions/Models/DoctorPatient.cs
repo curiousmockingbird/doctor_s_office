@@ -4,8 +4,8 @@ namespace DoctorsOffice.Models
     {       
         public int DoctorPatientId { get; set; }
         public int PatientId { get; set; }
-        public int DoctorId { get; set; }
+        public int DocId { get; set; }
         public virtual Patient Patient { get; set; }
-        public virtual Doctor Doctor { get; set; }
+        public virtual Doc Doctor { get; set; }
     }
 }
